@@ -20,6 +20,12 @@ app.use(helmet({
 }))
 
 
+
+app.use("/", (req, res)=>{
+    res.send("Hello")
+})
+
+
 const PORT = 8080 || process.env.PORT
 app.listen(PORT, ()=>{
     try {
