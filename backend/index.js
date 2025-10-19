@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import cookieParser from "cookie-parser"
 import morgan from "morgan"
 import helmet from "helmet"
-
+import connectDB from './config/connectDB.js'
 dotenv.config()
 
 
@@ -22,5 +22,11 @@ app.use(helmet({
 
 const PORT = 8080 || process.env.PORT
 app.listen(PORT, ()=>{
-    console.log("Server is running at PORT : ", PORT)
+    try {
+        connectDB()
+        console.log("Database connected....")
+        console.log("Server is running at PORT : ", PORT)
+    } catch (err) {
+        console.log("Error starting the backend...")
+    }
 })
